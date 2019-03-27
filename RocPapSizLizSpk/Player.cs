@@ -10,8 +10,7 @@ namespace RPSLS
     {
         //variables
         string Selection;
-        string PlayerName;
-        List<string> gestures = new List<string>() {"rock", "paper", "scissors", "lizard", "spoch"};
+        List<string> gestures = new List<string>() {"rock", "paper", "scissors", "lizard", "spock"};
 
         public Player()
         {
@@ -23,15 +22,14 @@ namespace RPSLS
         {
             do
             {
-                Console.WriteLine("Choose one: Rock, Paper, Scissors, Lizard, Spoch");
+                Console.WriteLine("Choose one: Rock, Paper, Scissors, Lizard, Spock");
                 Selection = Console.ReadLine();
             } while (!InputValidation(Selection));
             return Selection;
         }
         public virtual bool InputValidation(string Selection)
         {
-            //replace condition with some form of gestures.contains(Selection)
-            if (Selection == "rock" || Selection == "paper" || Selection == "scissors" || Selection == "lizard" || Selection == "spoch")
+            if (gestures.Contains(Selection))
             {
                 return true;
             }

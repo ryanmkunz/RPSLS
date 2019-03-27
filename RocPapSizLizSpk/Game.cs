@@ -27,17 +27,44 @@ namespace RPSLS
             {
                 Console.WriteLine("Would you like to play against the computer?");
                 OpponentType = Console.ReadLine();
-            } while (OpponentType != "yes" || OpponentType != "no");
+            } while (OpponentType != "yes" && OpponentType != "no");
 
             if (OpponentType == "yes")
             {
                 Computer player2 = new Computer();
+                GamePlay(player1, player2);
             }
             else
             {
                 Human player2 = new Human();
-            } 
+                GamePlay(player1, player2);
+            }
             
+            
+            
+        }
+        public void GamePlay(Player player1, Player player2)
+        {
+            do
+            {
+                Player1Selection = player1.GetUserInput();
+                Console.WriteLine("Player 1 chose: "+Player1Selection);
+                Player2Selection = player2.GetUserInput();
+                Console.WriteLine("Player 2 chose: "+Player2Selection);
+                WhoWon(Player1Selection, Player2Selection);
+                Console.WriteLine("Player 1 score: "+Player1Score+'\n'+" Player 2 score: "+Player2Score);
+            } while (Player1Score < 2 && Player2Score < 2);
+
+            if (Player1Score == 2 && Player2Score <= 1)
+            {
+                Console.WriteLine("Player 1 wins!");
+                Console.ReadLine();
+            }
+            else if (Player2Score == 2 && Player1Score <= 1)
+            {
+                Console.WriteLine("Player 2 wins!");
+                Console.ReadLine();
+            }
         }
         public void WhoWon(string Player1Selection, string Player2Selection)
         {
@@ -132,7 +159,6 @@ namespace RPSLS
             {
                 Player2Score++;
             }
-
         }
     }
 }

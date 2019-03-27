@@ -9,7 +9,7 @@ namespace RPSLS
     class Computer : Player
     {
         //variables
-        string ComputerSelection;
+        int selection;
 
         public Computer()
         {
@@ -19,8 +19,25 @@ namespace RPSLS
         //methods
         public override string GetUserInput()
         {
-            //generate a random input
-            return "spoch";
+            Random random = new Random();
+            selection = random.Next(1, 6);
+
+            switch(selection)
+            {
+                case 1:
+                    return "rock";
+                case 2:
+                    return "paper";
+                case 3:
+                    return "scissors";
+                case 4:
+                    return "lizard";
+                case 5:
+                    return "spock";
+                default:
+                    Console.WriteLine("error in GetUserInput() in Computer class");
+                    return "spock";
+            }
         }
 
     }
