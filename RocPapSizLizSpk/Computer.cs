@@ -20,7 +20,7 @@ namespace RPSLS
         public override string GetUserInput()
         {
             Random random = new Random();
-            selection = random.Next(1, 6);
+            selection = random.Next(1, 6); //random from 1-5
 
             switch(selection)
             {

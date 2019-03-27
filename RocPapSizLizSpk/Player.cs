@@ -9,7 +9,7 @@ namespace RPSLS
     public abstract class Player
     {
         //variables
-        string Selection;
+        public string Selection;
         List<string> gestures = new List<string>() {"rock", "paper", "scissors", "lizard", "spock"};
 
         public Player()
