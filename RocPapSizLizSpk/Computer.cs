@@ -10,6 +10,7 @@ namespace RPSLS
     {
         //variables
         int selection;
+        string playerName = "Computer";
 
         public Computer()
         {

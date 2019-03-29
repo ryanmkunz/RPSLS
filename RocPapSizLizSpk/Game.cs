@@ -10,15 +10,9 @@ namespace RPSLS
     {
         //variables
         string OpponentType;
-        string Player1Selection;
-        string Player2Selection;
-        int Player1Score = 0;
-        int Player2Score = 0;
         Player player1;
         Player player2;
-
-        //PROPERLY implement inheritance none of this Human player1 = new Human() nonesense ---- it needs to be Player player1 = new Human()
-        //Take full advantage of classes and inheritance by using Player1.Selection instead of a unique variaible for Player1Selection
+        string PlayAgain;
 
         public Game()
         {
@@ -32,20 +26,40 @@ namespace RPSLS
                 Console.WriteLine("Enter number of players: ");
                 OpponentType = Console.ReadLine();
             } while (OpponentType != "0" && OpponentType != "1" && OpponentType != "2");
+  
+
 
             switch(OpponentType)
             {
                 case "0":
                     player1 = new Computer();
                     player2 = new Computer();
+                    player1.PlayerName = "Computer 1";
+                    player2.PlayerName = "Computer 2";
                     break;
                 case "1":
                     player1 = new Human();
+                    do
+                    {
+                        Console.WriteLine("Enter Player 1 name: ");
+                        player1.PlayerName = Console.ReadLine();
+                    } while (player1.PlayerName == "");
                     player2 = new Computer();
+                    player2.PlayerName = "Computer";
                     break;
                 case "2":
                     player1 = new Human();
                     player2 = new Human();
+                    do
+                    {
+                        Console.WriteLine("Enter Player 1 name: ");
+                        player1.PlayerName = Console.ReadLine();
+                    } while (player1.PlayerName == "");
+                    do
+                    {
+                        Console.WriteLine("Enter Player 2 name: ");
+                        player2.PlayerName = Console.ReadLine();
+                    } while (player2.PlayerName == "");
                     break;
                 default:
                     break;
@@ -57,124 +71,130 @@ namespace RPSLS
         {
             do
             {
-                Player1Selection = player1.GetUserInput();
-                Console.WriteLine("Player 1 chose: "+Player1Selection);
-                Player2Selection = player2.GetUserInput();
-                Console.WriteLine("Player 2 chose: "+Player2Selection);
-                WhoWon(Player1Selection, Player2Selection);
-                Console.WriteLine("Player 1 score: "+Player1Score+'\n'+"Player 2 score: "+Player2Score);
-            } while (Player1Score < 2 && Player2Score < 2);
+                player1.Selection = player1.GetUserInput();
+                Console.WriteLine(player1.PlayerName+" chose: "+player1.Selection);
+                player2.Selection = player2.GetUserInput();
+                Console.WriteLine(player2.PlayerName+" chose: "+player2.Selection);
+                WhoWon(player1.Selection, player2.Selection);
+                Console.WriteLine(player1.PlayerName+" score: "+player1.Score+'\n'+player2.PlayerName+" score: "+player2.Score);
+            } while (player1.Score < 2 && player2.Score < 2);
 
-            if (Player1Score == 2 && Player2Score <= 1)
+            if (player1.Score == 2 && player2.Score <= 1)
             {
                 Console.WriteLine("Player 1 wins!");
             }
-            else if (Player2Score == 2 && Player1Score <= 1)
+            else if (player2.Score == 2 && player1.Score <= 1)
             {
                 Console.WriteLine("Player 2 wins!");
             }
             do
             {
                 Console.WriteLine("Would you like to play again?");
-            } while (Console.ReadLine() != "yes" );
-            if (Console.ReadLine() == "yes")
+                PlayAgain = Console.ReadLine();
+
+            } while (PlayAgain != "yes" && PlayAgain != "no");
+            if (PlayAgain == "yes")
             {
                 Game newGame = new Game();
                 newGame.RunGame();
             }
+            else if (PlayAgain == "no")
+            {
+                //how do you close the program?
+            }
         }
         public void WhoWon(string Player1Selection, string Player2Selection)
         {
-            /* Rock crushes Scissors (done)
-             * Scissors cuts Paper (done)
-             * Paper covers Rock (done)
-             * Rock crushes Lizard (done)
-             * Lizard poisons Spock (done)
-             * Spock smashes Scissors (done)
-             * Scissors decapitates Lizard (done)
-             * Lizard eats Paper (done)
-             * Paper disproves Spock (done)
-             * Spock vaporizes Rock (done) */
+            /* Rock crushes Scissors
+             * Scissors cuts Paper
+             * Paper covers Rock
+             * Rock crushes Lizard
+             * Lizard poisons Spock
+             * Spock smashes Scissors
+             * Scissors decapitates Lizard
+             * Lizard eats Paper
+             * Paper disproves Spock
+             * Spock vaporizes Rock */
 
             if (Player1Selection == "rock" && Player2Selection == "scissors")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "rock" && Player1Selection == "scissors")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "scissors" && Player2Selection == "paper")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "scissors" && Player1Selection == "paper")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "paper" && Player2Selection == "rock")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "paper" && Player1Selection == "rock")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "rock" && Player2Selection == "lizard")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "rock" && Player1Selection == "lizard")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "lizard" && Player2Selection == "spock")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "lizard" && Player1Selection == "spock")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "spock" && Player2Selection == "scissors")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "spock" && Player1Selection == "scissors")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "scissors" && Player2Selection == "lizard")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "scissors" && Player1Selection == "lizard")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "lizard" && Player2Selection == "paper")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "lizard" && Player1Selection == "paper")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "paper" && Player2Selection == "spock")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "paper" && Player1Selection == "spock")
             {
-                Player2Score++;
+                player2.Score++;
             }
             else if (Player1Selection == "spock" && Player2Selection == "rock")
             {
-                Player1Score++;
+                player1.Score++;
             }
             else if (Player2Selection == "spock" && Player1Selection == "rock")
             {
-                Player2Score++;
+                player2.Score++;
             }
         }
     }

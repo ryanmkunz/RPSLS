@@ -10,7 +10,9 @@ namespace RPSLS
     {
         //variables
         public string Selection;
-        List<string> gestures = new List<string>() {"rock", "paper", "scissors", "lizard", "spock"};
+        public string PlayerName;
+        public int Score;
+        List<string> Gestures = new List<string>() {"rock", "paper", "scissors", "lizard", "spock"};
 
         public Player()
         {
@@ -29,7 +31,7 @@ namespace RPSLS
         }
         public virtual bool InputValidation(string Selection)
         {
-            if (gestures.Contains(Selection))
+            if (Gestures.Contains(Selection))
             {
                 return true;
             }
