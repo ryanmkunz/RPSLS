@@ -23,7 +23,7 @@ namespace RPSLS
         {
             do
             {
-                Console.WriteLine("Enter number of players: ");
+                Console.WriteLine("------------------------"+'\n'+"Enter number of players: ");
                 OpponentType = Console.ReadLine();
             } while (OpponentType != "0" && OpponentType != "1" && OpponentType != "2");
   
@@ -41,7 +41,7 @@ namespace RPSLS
                     player1 = new Human();
                     do
                     {
-                        Console.WriteLine("Enter Player 1 name: ");
+                        Console.WriteLine('\n'+"Enter Player 1 name: ");
                         player1.PlayerName = Console.ReadLine();
                     } while (player1.PlayerName == "");
                     player2 = new Computer();
@@ -52,12 +52,12 @@ namespace RPSLS
                     player2 = new Human();
                     do
                     {
-                        Console.WriteLine("Enter Player 1 name: ");
+                        Console.WriteLine('\n' + "Enter Player 1 name: ");
                         player1.PlayerName = Console.ReadLine();
                     } while (player1.PlayerName == "");
                     do
                     {
-                        Console.WriteLine("Enter Player 2 name: ");
+                        Console.WriteLine('\n' + "Enter Player 2 name: ");
                         player2.PlayerName = Console.ReadLine();
                     } while (player2.PlayerName == "");
                     break;
@@ -72,20 +72,20 @@ namespace RPSLS
             do
             {
                 player1.Selection = player1.GetUserInput();
-                Console.WriteLine(player1.PlayerName+" chose: "+player1.Selection);
+                Console.WriteLine('\n'+player1.PlayerName+" chose: "+player1.Selection);
                 player2.Selection = player2.GetUserInput();
                 Console.WriteLine(player2.PlayerName+" chose: "+player2.Selection);
                 WhoWon(player1.Selection, player2.Selection);
-                Console.WriteLine(player1.PlayerName+" score: "+player1.Score+'\n'+player2.PlayerName+" score: "+player2.Score);
+                Console.WriteLine(player1.PlayerName+" score: "+player1.Score+'\n'+player2.PlayerName+" score: "+player2.Score+'\n');
             } while (player1.Score < 2 && player2.Score < 2);
 
             if (player1.Score == 2 && player2.Score <= 1)
             {
-                Console.WriteLine("Player 1 wins!");
+                Console.WriteLine(player1.PlayerName+" wins!"+ '\n');
             }
             else if (player2.Score == 2 && player1.Score <= 1)
             {
-                Console.WriteLine("Player 2 wins!");
+                Console.WriteLine(player2.PlayerName+" wins!"+ '\n');
             }
             do
             {
@@ -96,11 +96,12 @@ namespace RPSLS
             if (PlayAgain == "yes")
             {
                 Game newGame = new Game();
+                Console.WriteLine('\n');
                 newGame.RunGame();
             }
             else if (PlayAgain == "no")
             {
-                //how do you close the program?
+                Environment.Exit(0);
             }
         }
         public void WhoWon(string Player1Selection, string Player2Selection)

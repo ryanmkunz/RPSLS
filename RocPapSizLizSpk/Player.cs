@@ -24,7 +24,7 @@ namespace RPSLS
         {
             do
             {
-                Console.WriteLine("Choose one: Rock, Paper, Scissors, Lizard, Spock");
+                Console.WriteLine('\n' + "Choose one: Rock, Paper, Scissors, Lizard, Spock");
                 Selection = Console.ReadLine();
             } while (!InputValidation(Selection));
             return Selection;
